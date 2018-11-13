@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>Biblioteca</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+<body>
+  <div class="card" *ngIf="!selectCatalogo;">
+    <div class="card-body">
+      <h1>Biblioteca</h1>
+      <table class="table table-dark table-hover">
+        <thead class="thead-dark">
+          <tr>
+            <th>Titulo</th>
+            <th>Autor</th>
+            <th>Copias disponibles</th>
+            <th>Categoria</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let biblioteca of bibliotecaArr" [class.selected]="biblioteca === selectCatalogo" (click)="onSelect(biblioteca)">
+            <td>{{biblioteca.titulo}}</td>
+            <td>{{biblioteca.autor}}</td>
+            <td>{{biblioteca.copiasDisponibles}}</td>
+            <td>{{biblioteca.categoria}}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  <div *ngIf="selectCatalogo;" class="card">
+    <div class="card-body">
+      <h1 class="card-title thead-dark text-center">Detalles</h1>
+      <div class="card-text">
+        <h2>Titulo:
+          <span>{{selectCatalogo.titulo}}</span></h2>
+        <h2>Autor:
+          <span>{{selectCatalogo.autor}}</span></h2>
+        <h2>Copias disponibles:
+          <span>{{selectCatalogo.copiasDisponibles}}</span></h2>
+        <h2>Categoria:
+          <span>{{selectCatalogo.categoria}}</span></h2>
+        <button class="btn btn-primary" (click)="backToMenu();"> Volver al menu </button>
+        <button class="btn btn-btn-danger" (click)="prestarLibro();"> Prestar Libro </button>
+        <button class="btn btn-btn-danger" (click)="devolverLibro();"> Devolver libro </button>
+      </div>
+    </div>
+  </div>
+</body>
+</html>
